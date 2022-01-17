@@ -1,0 +1,62 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+
+
+void swap(char *x,char *y) /*Method to swap two digits*/
+{
+char temp=*x;
+*x=*y;
+*y=temp;
+}
+
+
+
+void nextNum(char num[],int size) /*Method to find the next number greater than the given number*/
+{
+int i,j;
+for(i=size-1;i>0;i--)
+{
+if(num[i-1]<num[i])
+break;
+}
+
+if(i==0) /*if all the digits are in decreasing order then the given number the greatest*/
+{
+cout<<"No number greater than this is possible from the same set of digits";
+return;
+}
+int x=num[i-1],smaller=i;
+for(j=i+1;j<size;j++)
+{
+if(num[j]>x && num[j]<num[smaller]) /*to find out the next greatest digit after x in num*/
+{
+smaller=j;
+}
+}
+swap(&num[smaller],&num[i-1]); /*Method to swap two digits*/
+sort(num+i,num+size); /*sort is a predefined method in algorithm */
+for(int i=0;i<size;i++)
+{
+cout<<num[i];
+}
+return ;
+}
+
+
+
+int main()
+{
+int n;
+cout<<"Enter the size of the number :";
+cin>>n;
+char number[n];
+cout<<"Enter the number :";
+for(int i=0;i<n;i++)
+{
+cin>>number[i];
+}
+nextNum(number,n);
+return 0;
+}
