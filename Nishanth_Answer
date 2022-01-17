@@ -1,0 +1,31 @@
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+class Rectangle
+{
+  public:
+        int width,height;
+        double area;
+     
+  public:
+  
+    void display()
+    {
+        cout<<"\nEnter the width: ";
+        cin>>width;
+        cout<<"\nEnter the heigth: ";
+        cin>>height;
+        area=width*height;
+        cout<<"\nArea of Rectangle is: "<<area<<endl;  
+    }
+  
+};
+
+int main()
+{
+    unique_ptr<Rectangle> r {new Rectangle{100}};
+    r->display();
+    return 0;
+}
